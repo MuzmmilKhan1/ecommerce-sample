@@ -2,12 +2,8 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import './UpperNavbar.css'
 import logo from '../../images/My (1).png';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { PersonCircle } from 'react-bootstrap-icons';
 
 export default function UpperNavbar() {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, Nav, FormControl, Button,Form } from 'react-bootstrap';
+import { Navbar, Nav, FormControl, Button } from 'react-bootstrap';
 import { PersonCircle, CartFill } from 'react-bootstrap-icons';
 
 function LowerNavbar() {
@@ -10,8 +10,8 @@ function LowerNavbar() {
         <Button variant="outline-dark" style={{margin: "10px"}}>Search</Button>
         <Nav className="mr-auto align-items-center justify-content-center" 
         style={{padding: "10px",display: "flex",flexDirection: "row"}}>
-        <button class="btn slide" style={{padding: "10px"}}>
-            <span class="text">Add a Product</span>
+        <button className="btn slide" style={{padding: "10px"}}>
+            <span className="text">Add a Product</span>
         </button>
         <Nav.Link>
             <CartFill style={{fontSize: "1.5rem",margin: "5px"}}></CartFill>
