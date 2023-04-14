@@ -30,15 +30,14 @@ function Products(){
         <div className='col-md-12 row justify-content-center align-items-center mx-auto'>
 
         {products.slice(0,6).map(product => (
-            <div className='col-md-4 justify-content-center
+            <div key={product.id} className='col-md-4 justify-content-center
             align-items-center mx-auto text-center'>
-
-            <div key={product.id} className='col-md-11 productDiv justify-content-center
+            <div className='col-md-11 productDiv justify-content-center
              align-items-center mx-auto text-center'>
-             <a href="#" className="item-link" style={{minWidth: "100%"}}>
+             <Link to={'/product'} state={product} className="item-link" style={{minWidth: "100%"}}>
             <img src={product.image} alt={product.title} height={"150px"} className='mx-auto'/>
             <span className="item-info">Buy Now</span>
-                </a>
+                </Link>
             <h6 className='text'>{product.title}</h6>
             <p className='text' style={{textDecoration: "none"}}>{product.price}</p>
           </div>

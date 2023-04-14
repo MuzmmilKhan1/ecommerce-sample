@@ -10,7 +10,7 @@ export default function UpperNavbar() {
     <>
     <Navbar bg="light" className='navbar' expand="lg">
       <Container>
-        <Navbar.Brand href="#home" className='brand'><img src={logo} width='75px' height='auto' className='logo'></img></Navbar.Brand>
+        <Navbar.Brand href="#home" className='brand'><img src={logo} width='75px' height='auto' className='logo' alt='Logo'></img></Navbar.Brand>
         {/* <div className='nav'> */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
