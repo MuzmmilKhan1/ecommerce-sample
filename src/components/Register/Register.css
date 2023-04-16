@@ -1,0 +1,60 @@
+.body-Register{
+    padding: 0;
+    margin: 0;
+    font-weight: 500;
+}
+.RegLog-Register{
+    margin: 5% auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    text-align: center;
+    border: 1px solid rgb(196, 196, 196);
+}
+.RegLog-Register h3, label{
+    padding: 10px;
+}
+.form-Register{
+    text-align: left;
+    padding: 10px;
+}
+.form-Register input{
+    width: 100%;
+    padding: 10px;
+}
+.btn-Register{
+ background-color: rgb(23, 211, 26);
+ padding: 5px;
+ margin: 5px;
+ border: none;
+ border-radius: 10px;
+}
+.a-Register{
+    color: rgb(255, 255, 255);
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+.symbol-Register{
+    margin-left: -5%;
+    display: inline;
+    vertical-align: middle;
+}
+@media screen and (max-width: 1205px) {
+    .symbol-Register{
+        margin-left: -8%;
+        font-size: 1rem;
+    }
+}
+@media only screen and (max-width: 786px) {
+    .RegLog-Register{
+        margin: 8% auto;
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 425px) {
+    .RegLog-Register{
+        margin: 8% auto;
+        width: 80%;
+    }
+}

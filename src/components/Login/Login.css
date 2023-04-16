@@ -1,0 +1,49 @@
+body, .body-login{
+    padding: 0;
+    margin: 0;
+}
+.RegLog, .RegLog-login{
+    margin: 3% auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    text-align: center;
+    border: 1px solid rgb(196, 196, 196);
+}
+.RegLog h3, label, .RegLog-login h3{
+    padding: 10px;
+}
+.form{
+    text-align: left;
+    padding: 10px;
+}
+.form input{
+    width: 100%;
+    padding: 10px;
+}
+.btnforloginpage{
+ background-color: rgb(23, 170, 211);
+ color: white;
+ padding: 5px;
+ margin: 5px;
+ border: none;
+ border-radius: 10px;
+}
+.a{
+    color: black;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+.symbol{
+    margin-left: -5%;
+    display: inline;
+    vertical-align: middle;
+    color: black;
+}
+@media screen and (max-width: 1205px) {
+    .symbol{
+        margin-left: -8%;
+        font-size: 1rem;
+    }
+}

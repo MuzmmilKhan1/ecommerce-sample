@@ -26,7 +26,7 @@ export default function Products({items}) {
             <div key={product.id} className='col-md-11 productDiv justify-content-center
              align-items-center mx-auto text-center'>
              <Link to={{ pathname: `/product`}} state={product} className="item-link" style={{minWidth: "100%"}}>
-            <img src={product.image} alt={product.title} height={"150px"} className='mx-auto'/>
+            <img src={product.image || product.imageUrl} alt={product.title || product.name} height={"150px"} className='mx-auto'/>
             <span className="item-info">Buy Now</span>
                 </Link>
             <h6 className='text'>{product.title}</h6>
