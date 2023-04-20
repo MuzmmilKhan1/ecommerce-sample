@@ -7,37 +7,57 @@ import Modal from 'react-bootstrap/Modal';
 import { Google } from 'react-bootstrap-icons';
 import { signInWithGoogle } from '../Firebase';
 import uploadProduct from '../Product-Upload/productUpload'
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import 'firebase/storage';
 
 function LowerNavbar() {
   const [isLoginVisible, setLoginVisible] = useState(false); 
   const [isAddProductVisible, setAddProductVisible] = useState(false);
+  // Get a reference to the storage service, which is used to create references in your storage bucket
+  const storage1 = getStorage();
+  // Create a storage reference from our storage service
+  let storageRef;
 
-  // State for products
+
+
+// State for products
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
-  // eslint-disable-next-line
-  const [image, setImage] = useState(null);
-  // eslint-disable-next-line 
+  const [image, setImage] = useState("");
   const [imageUrl, setImageUrl] = useState('');
-  // eslint-disable-next-line
-
+  
 // Handling Image Change
-  const handleImageChange = (e) => {
-    setImage(e.target.files[0]);
-  };
+const handleUpload = (event) => {
+  if (event.target.files && event.target.files.length > 0) { 
+  setImage(event.target.files[0].name);
+    storageRef = ref(storage1, `productImages/${image}`)
+    const file = event.target.files[0];
+    uploadBytes(storageRef, file).then((snapshot) => {
+      console.log('Uploaded a blob or file!');
+      // Get the download URL
+      getDownloadURL(storageRef)
+        .then((url) => {
+          console.log(url);
+          setImageUrl(url);
+        })
+
+    });
+}
+};
 
   // Uploading Product
   // Function to handle form submit
   const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      // eslint-disable-next-line
-      const downloadURL = await uploadProduct(name, description, price, imageUrl);
-      // eslint-disable-next-line
-    } catch (err) {
-      console.error(err);
-    }
+    console.log(e)
+    handleUpload(image)
+    // e.preventDefault();
+    // try {
+    //   // eslint-disable-next-line
+    //   const downloadURL = await uploadProduct(name, description, price, imageUrl);
+    // } catch (err) {
+    //   console.error(err);
+    // }
   }
 
   // Login Modal
@@ -81,7 +101,7 @@ function LowerNavbar() {
             {/* Product image input */}
             <div className="form-group">
               <label htmlFor="productImage">Product Image</label>
-              <input type="file" className="form-control-file" id="productImage" onChange={handleImageChange}/>
+              <input type="file" className="form-control-file" onChange={(e)=>{setImage(e)}} id="productImage" />
             </div>
             {/* Product price input */}
             <div className="form-group">

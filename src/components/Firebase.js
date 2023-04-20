@@ -4,7 +4,7 @@ import {
 } from "firebase/auth";
 import { getFirestore, query, getDocs, collection, where, addDoc } from 'firebase/firestore'
 import { initializeApp } from "firebase/app";
-import { getStorage, } from "firebase/storage";
+import { getStorage } from "firebase/storage";
 import { getDatabase } from "firebase/database";
 
 
@@ -16,6 +16,7 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASEMESSAGE,
   appId: process.env.REACT_APP_FIREBASEAPPID,
   measurementId: process.env.REACT_APP_FIREBASEMEASURMENTID,
+  // storageBucket: 'gs://ecommerce-sample-f922b.appspot.com'
   // databaseURL: process.env.REACT_APP_FIREBASEDATABASE
   // No Secret
 };
@@ -105,9 +106,6 @@ const getDataFromFirestore1 = async () => {
 // Call the function to retrieve data
 getDataFromFirestore1();
 
-
-
-
 export {
   auth,
   db,
@@ -116,5 +114,6 @@ export {
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,
   sendPasswordReset,
-  dataArray
+  dataArray,
+  app
 };

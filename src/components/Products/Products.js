@@ -20,10 +20,10 @@ export default function Products({items}) {
         <div className='col-md-12 row justify-content-center align-items-center mx-auto'>
 
         {products.map(product => (
-            <div key={product.id} className='col-md-4 justify-content-center
+            <div key={product.id || product.imageUrl} className='col-md-4 justify-content-center
             align-items-center mx-auto text-center'>
 
-            <div key={product.id} className='col-md-11 productDiv justify-content-center
+            <div key={product.id || product.imageUrl} className='col-md-11 productDiv justify-content-center
              align-items-center mx-auto text-center'>
              <Link to={{ pathname: `/product`}} state={product} className="item-link" style={{minWidth: "100%"}}>
             <img src={product.image || product.imageUrl} alt={product.title || product.name} height={"150px"} className='mx-auto'/>
