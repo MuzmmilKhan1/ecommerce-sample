@@ -92,14 +92,12 @@ const getDataFromFirestore1 = async () => {
     const citiesRef = collection(db, 'products');
     const snapshot = await getDocs(citiesRef);
     snapshot.forEach(doc => {
-      console.log(doc.id, '=>', doc.data());
       dataArray.push(doc.data());
     });
   } catch (err) {
     console.error(err);
     alert('Failed to retrieve data from Firestore');
   }
-  console.log(dataArray);
 };
 
 

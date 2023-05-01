@@ -1,6 +1,7 @@
 
 import React, { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 export default function Products({items}) {
     const [products, setProducts] = useState(items || []);
@@ -20,16 +21,16 @@ export default function Products({items}) {
         <div className='col-md-12 row justify-content-center align-items-center mx-auto'>
 
         {products.map(product => (
-            <div key={product.id || product.imageUrl} className='col-md-4 justify-content-center
+            <div key={product.imageUrl} className='col-md-4 justify-content-center
             align-items-center mx-auto text-center'>
 
-            <div key={product.id || product.imageUrl} className='col-md-11 productDiv justify-content-center
+            <div key={product.imageUrl} className='col-md-11 productDiv justify-content-center
              align-items-center mx-auto text-center'>
              <Link to={{ pathname: `/product`}} state={product} className="item-link" style={{minWidth: "100%"}}>
-            <img src={product.image || product.imageUrl} alt={product.title || product.name} height={"150px"} className='mx-auto'/>
+            <LazyLoadImage src={product.image || product.imageUrl} alt={product.title || product.name} height={"150px"} className='mx-auto'/>
             <span className="item-info">Buy Now</span>
                 </Link>
-            <h6 className='text'>{product.title}</h6>
+            <h6 className='text'>{product.name}</h6>
             <p className='text' style={{textDecoration: "none"}}>{product.price}</p>
           </div>
         </div>

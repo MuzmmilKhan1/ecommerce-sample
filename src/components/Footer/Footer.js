@@ -4,7 +4,7 @@ import upwork from '../../images/upwork.svg'
 
 export default function Footer() {
   return (
-    <footer style={{bottom: "0",position: "static", width: '100%'}}><div className="container">
+    <footer style={{bottom: "0",position: "relative", width: '100%'}} className='footer fixed-bottom'><div className="container">
     <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
       <div className="col-md-4 d-flex align-items-center">
         <a href="/" className="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">

@@ -9,7 +9,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="col-md-8 container ">
+    <div className="col-md-8 container " style={{minHeight: "50vh"}}>
       <h2>Cart</h2>
       {cart.length > 0 ? (
         <table className="table">
@@ -24,7 +24,7 @@ const Cart = () => {
           <tbody>
             {cart.map((item) => (
               <tr key={item.id}>
-                <td>{item.title}</td>
+                <td>{item.title} {item.name}</td>
                 <td>${item.price}</td>
                 <td>{item.quantity}</td>
                 <td>

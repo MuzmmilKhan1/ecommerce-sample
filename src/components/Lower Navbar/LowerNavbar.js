@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect , useRef } from 'react';
 import './LowerNavbar.css'
-import { Navbar, Nav, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav, FormControl } from 'react-bootstrap';
 import { PersonCircle, CartFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
@@ -9,6 +9,11 @@ import { signInWithGoogle } from '../Firebase';
 import uploadProduct from '../Product-Upload/productUpload'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import 'firebase/storage';
+import { InfinitySpin } from 'react-loader-spinner';
+import Alert from 'react-bootstrap/Alert';
+import { dataArray } from '../Firebase';
+import { useLocation } from 'react-router-dom';
+
 
 function LowerNavbar() {
   const [isLoginVisible, setLoginVisible] = useState(false); 
@@ -17,48 +22,86 @@ function LowerNavbar() {
   const storage1 = getStorage();
   // Create a storage reference from our storage service
   let storageRef;
-
-
-
 // State for products
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [image, setImage] = useState("");
-  const [imageUrl, setImageUrl] = useState('');
-  
-// Handling Image Change
-const handleUpload = (event) => {
+  const [display, setDisplay] = useState("none")
+  const [search, setSearch] = useState('')
+  const [products, setProducts] = useState([]);
+  const [array, setArray] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [productDisplay, setProductDisplay] = useState("none")
+  const divRef = useRef(null);
+  const inputRef = useRef(null);
+
+
+  const location = useLocation();
+
+  useEffect(() => {
+    setProductDisplay("none")
+  }, [location]);
+
+
+
+  useEffect(() => {
+      setArray(dataArray);
+  }, []);
+
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (divRef.current && !divRef.current.contains(event.target) &&
+          inputRef.current && !inputRef.current.contains(event.target)) {
+        // Clicked outside the div and input
+        setProductDisplay("none");
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleSearch = (input) => {
+    const filtered = array.filter((product) => {
+      if(product.name)
+      return product.name.toLowerCase().includes(input.toLowerCase());
+    });
+    setFilteredProducts(filtered);
+  };
+
+  const handleUpload = (event) => {
   if (event.target.files && event.target.files.length > 0) { 
-  setImage(event.target.files[0].name);
-    storageRef = ref(storage1, `productImages/${image}`)
     const file = event.target.files[0];
+    storageRef = ref(storage1, `productImages/${file.name}`)
     uploadBytes(storageRef, file).then((snapshot) => {
-      console.log('Uploaded a blob or file!');
       // Get the download URL
       getDownloadURL(storageRef)
         .then((url) => {
-          console.log(url);
-          setImageUrl(url);
+          uploadProduct(name, description, price, url); // call uploadProduct() after setting imageUrl
+          setDisplay("none");
         })
-
+        .catch((error) => {
+          console.log('Error getting download URL:', error);
+        });
+    })
+    .catch((error) => {
+      console.log('Error uploading file:', error);
     });
-}
+  }
 };
 
-  // Uploading Product
-  // Function to handle form submit
-  const handleFormSubmit = async (e) => {
-    console.log(e)
-    handleUpload(image)
-    // e.preventDefault();
-    // try {
-    //   // eslint-disable-next-line
-    //   const downloadURL = await uploadProduct(name, description, price, imageUrl);
-    // } catch (err) {
-    //   console.error(err);
-    // }
-  }
+// Uploading Product
+const handleFormSubmit = async (e) => {
+  setDisplay("flex")
+  await handleUpload(image);
+  e.preventDefault();
+};
+
 
   // Login Modal
   const handleLoginClick = () => {
@@ -85,7 +128,14 @@ const handleUpload = (event) => {
         <Modal.Header closeButton>
           <Modal.Title>Add Product</Modal.Title>
         </Modal.Header>
+        <Alert key="light" variant="light" className="justify-content-center align-items-center" style={{display: display}}>
+        <InfinitySpin 
+        width='200'
+        color="#4fa94d"
+        />
+        </Alert>
         <Modal.Body className='model'>
+          
           {/* AddProduct form */}
           <form onSubmit={handleFormSubmit}>
             {/* Product name input */}
@@ -101,7 +151,8 @@ const handleUpload = (event) => {
             {/* Product image input */}
             <div className="form-group">
               <label htmlFor="productImage">Product Image</label>
-              <input type="file" className="form-control-file" onChange={(e)=>{setImage(e)}} id="productImage" />
+              <input type="file" className="form-control-file" onChange={(e)=>{setImage(e);
+              }} id="productImage" />
             </div>
             {/* Product price input */}
             <div className="form-group">
@@ -142,8 +193,39 @@ const handleUpload = (event) => {
     <>
       <Navbar bg="light" expand="lg" className='justify-content-center'>
         <Navbar.Brand> </Navbar.Brand>
-        <FormControl type="text" placeholder="Search" className="mr-sm-2 w-50" />
-        <Button variant="outline-dark" style={{ margin: "10px" }}>Search</Button>
+        <div className='d-flex flex-column w-50'>
+        <FormControl
+          type="text"
+          placeholder="Search"
+          className="mr-sm-2"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            handleSearch(e.target.value);
+            setProductDisplay("block")
+          }}
+          ref={inputRef}
+          // onBlur={()=>setProductDisplay("none")}
+          />
+          <div className='product-list w-50' style={{display: productDisplay}}   onClick={() =>setProductDisplay("block")}
+          onFocus={()=>setProductDisplay("block")}
+          onBlur={()=>setProductDisplay("none")}
+          ref={divRef}
+          >
+          {filteredProducts.map((product, index) => {
+            return (
+              <Link
+                key={index}
+                to={{ pathname: '/product' }} state={product}
+                className='liSearchProducts'
+              >
+                <img src={product.imageUrl} style={{ width: "40px", height: "40px" }} />
+                {product.name}
+              </Link>
+            );
+          })}
+            </div>
+        </div>
         <Nav className="mr-auto align-items-center justify-content-center"
           style={{ padding: "10px", display: "flex", flexDirection: "row" }}>
           <button className="btn slide" style={{ padding: "10px" }} onClick={handleAddProductClick}>
@@ -157,6 +239,7 @@ const handleUpload = (event) => {
           </Nav.Link>
         </Nav>
       </Navbar>
+
       {isLoginVisible && renderModal()} 
       {isAddProductVisible && ProductModal()} 
     </>

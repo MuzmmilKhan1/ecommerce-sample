@@ -8,7 +8,7 @@ export default function Homepage() {
   return (
   <>
     <ProductSlider></ProductSlider>
-    <Products></Products>
+    <Products ></Products>
   </>
   )
 }
@@ -17,18 +17,21 @@ export default function Homepage() {
 
 function Products(){
     const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const apiUrl = 'https://fakestoreapi.com/products';
-    fetch(apiUrl)
+    useEffect(() => {
+      const apiUrl = 'https://fakestoreapi.com/products';
+      fetch(apiUrl)
       .then(response => response.json())
-      .then(data => setProducts(data));
+      .then(data => {
+        setProducts(data)
+      }
+      );
     }, []);
+    {console.log(products)}
     return(
         <>
         <h1 className='display-4 mx-4'>Our Products -</h1>
-        <div className='col-md-12 row justify-content-center align-items-center mx-auto'>
 
+        <div className='col-md-12 row justify-content-center align-items-center mx-auto'>
         {products.slice(0,6).map(product => (
             <div key={product.id} className='col-md-4 justify-content-center
             align-items-center mx-auto text-center'>

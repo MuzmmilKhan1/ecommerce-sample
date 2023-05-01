@@ -19,29 +19,16 @@ import { dataArray } from './components/Firebase';
 function App() {
 
   const [products, setProducts] = useState();
-
-  console.log(dataArray);
   
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      // Code to run after 10 seconds
+      // Setting Products
     setProducts(dataArray);
-      console.log('Function called after 10 seconds');
-    }, 10000); // 10 seconds in milliseconds
+    }, []);
 
     // Clean up the timeout on unmount
     return () => clearTimeout(timeoutId);
   }, []);
-  console.log('Products are:', JSON.stringify(products)); 
-  // useEffect(() => {
-  //   const apiUrl = 'https://fakestoreapi.com/products';
-  //   fetch(apiUrl)
-  //   .then(response => response.json())
-  //   .then(data => 
-  //     // setProducts(data)
-  //     );
-  //   // eslint-disable-next-line
-  // }, []);
   return (
     <>
     <Router>
