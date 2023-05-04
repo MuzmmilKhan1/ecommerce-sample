@@ -14,9 +14,9 @@ export default function Footer() {
       </div>
   
       <ul className="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li className="ms-3"><a className="text-body-secondary" href="/"><img src={upwork} height={'16px'} alt='Upwork Logo'></img></a></li>
-        <li className="ms-3"><a className="text-body-secondary" href="/"><Facebook></Facebook></a></li>
-        <li className="ms-3"><a className="text-body-secondary" href="/"><Linkedin></Linkedin></a></li>
+        <li className="ms-3"><a className="text-body-secondary" href="https://www.upwork.com/workwith/muzmmilkhan2"><img src={upwork} height={'16px'} alt='Upwork Logo'></img></a></li>
+        <li className="ms-3"><a className="text-body-secondary" href="https://www.facebook.com/profile.php?id=100009482720934"><Facebook></Facebook></a></li>
+        <li className="ms-3"><a className="text-body-secondary" href="https://www.linkedin.com/in/muzamil-khan-a91357212"><Linkedin></Linkedin></a></li>
       </ul>
     </footer>
   </div></footer>

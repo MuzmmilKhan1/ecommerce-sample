@@ -16,17 +16,15 @@ export default function Homepage() {
 
 
 function Products(){
-    const [products, setProducts] = useState([]);
-    useEffect(() => {
-      const apiUrl = 'https://fakestoreapi.com/products';
-      fetch(apiUrl)
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const apiUrl = 'https://fakestoreapi.com/products';
+    fetch(apiUrl)
       .then(response => response.json())
       .then(data => {
         setProducts(data)
-      }
-      );
-    }, []);
-    {console.log(products)}
+      });
+  }, []);
     return(
         <>
         <h1 className='display-4 mx-4'>Our Products -</h1>

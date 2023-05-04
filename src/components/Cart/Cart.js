@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../CartContext/CartContext";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cart, removeFromCart, incrementItem, decrementItem, total } = useContext(CartContext);
@@ -28,13 +29,13 @@ const Cart = () => {
                 <td>${item.price}</td>
                 <td>{item.quantity}</td>
                 <td>
-                  <button className="btn btn-sm btn-danger" onClick={() => removeFromCart(item)}>
+                  <button className="btn btn-sm btn-light mx-1" onClick={() => removeFromCart(item)}>
                     Remove
                   </button>
-                  <button className="btn btn-sm btn-primary" onClick={() => increment(item)}>
+                  <button className="btn btn-sm btn-light mx-1" onClick={() => increment(item)}>
                     +
                   </button>
-                  <button className="btn btn-sm btn-secondary" onClick={() => decrementItem(item)}>
+                  <button className="btn btn-sm btn-light mx-1" onClick={() => decrementItem(item)}>
                     -
                   </button>
                 </td>
@@ -46,6 +47,7 @@ const Cart = () => {
         <p>No items in the cart</p>
       )}
       <p>Total: ${total} USD</p>
+      <Link to={'/checkout'} className="btn btn-success">Proceed to Checkout</Link>
     </div>
   );
 };

@@ -15,6 +15,8 @@ import Login from "./components/Login/Login"
 import Forgot from './components/Login/Forgot';
 import Register from './components/Register/Register';
 import { dataArray } from './components/Firebase';
+import About from './components/About/About';
+import Checkout from './components/CheckOut/Checkout';
 
 function App() {
 
@@ -44,6 +46,8 @@ function App() {
        <Route path="/login" element={<Login />} />
        <Route path="/resetPassword" element={<Forgot />} />
        <Route path="/register" element={<Register />} />
+       <Route path="/about" element={<About />} />
+       <Route path="/checkout" element={<Checkout />} />
       </Routes>
     </CartProvider>
       <Footer></Footer>

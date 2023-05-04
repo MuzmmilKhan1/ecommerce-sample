@@ -12,8 +12,6 @@ const uploadProduct = async (name, description, price, image) => {
       imageUrl: image
     });
 
-    // Return the metadata
-    // return metadata;
   } catch (error) {
     console.error("Error uploading product: ", error);
     throw error;
