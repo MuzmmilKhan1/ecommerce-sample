@@ -28,12 +28,12 @@ self.__precacheManifest = [
     "url": "/ecommerce-sample/static/media/upwork.2d987994.svg"
   },
   {
-    "revision": "ced611daf7709cc778da928fec876475",
-    "url": "/ecommerce-sample/static/media/slick.ced611da.eot"
-  },
-  {
     "revision": "f97e3bbf73254b0112091d0192f17aec",
     "url": "/ecommerce-sample/static/media/slick.f97e3bbf.svg"
+  },
+  {
+    "revision": "ced611daf7709cc778da928fec876475",
+    "url": "/ecommerce-sample/static/media/slick.ced611da.eot"
   },
   {
     "revision": "d41f55a78e6f49a5512878df1737e58a",
@@ -44,7 +44,7 @@ self.__precacheManifest = [
     "url": "/ecommerce-sample/static/media/slick.b7c9e1e4.woff"
   },
   {
-    "revision": "ae3ee8c110df00a6374127386290fab4",
+    "revision": "0b21266c5adb0f77bb30a77805d273fb",
     "url": "/ecommerce-sample/index.html"
   }
 ];
