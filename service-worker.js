@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/MuzmmilKhan1/ecommerce-sample.git/precache-manifest.8f05256bc1c3cee529887af902bc43d5.js"
+  "/ecommerce-sample/precache-manifest.7b9362a3994cba64b8b6c9da05fc6f8b.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/MuzmmilKhan1/ecommerce-sample.git/index.html", {
+workbox.routing.registerNavigationRoute("/ecommerce-sample/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
